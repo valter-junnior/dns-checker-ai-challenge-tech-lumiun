@@ -3,8 +3,8 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vue-tsc && vite build",
-        "build:vite": "vite build",
+        "build:strict": "vue-tsc && vite build",
+        "build": "vite build",
         "dev": "vite",
         "lint": "eslint resources/js --ext .js,.ts,.vue --ignore-path .gitignore --fix"
     },

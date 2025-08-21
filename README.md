@@ -3,8 +3,6 @@
 ## 📌 Sobre o Projeto
 Este projeto processa logs de consultas DNS e os classifica em níveis de risco usando uma API de Inteligência Artificial (OpenAI ou Groq). O backend é Laravel, o frontend é Vue 3 via Inertia, e o sistema utiliza filas Redis para processamento assíncrono. O projeto está pronto para Docker e possui autenticação via Laravel Breeze.
 
----
-
 ## 📦 Requisitos
 - PHP >= 8.2
 - Composer
@@ -12,8 +10,6 @@ Este projeto processa logs de consultas DNS e os classifica em níveis de risco 
 - Docker e Docker Compose (opcional)
 - Redis
 - Chave de API OpenAI ou Groq
-
----
 
 ## 🛠️ Tecnologias Utilizadas
 - Laravel 12 (Backend)
@@ -25,8 +21,6 @@ Este projeto processa logs de consultas DNS e os classifica em níveis de risco 
 - OpenAI ou Groq (Classificação IA)
 - Laravel Reverb (WebSockets)
 
----
-
 ## 🚀 Instalação e Execução
 
 ### Local
@@ -37,18 +31,11 @@ cp .env.example .env
 php artisan key:generate
 # Configure sua chave OPENAI_KEY ou GROQ_KEY no .env
 php artisan migrate --seed
+docker-compose up --build # para o redis
 php artisan serve
 php artisan queue:work
- php artisan reverb:start
+php artisan reverb:start
 ```
-
-### Docker
-```bash
-docker-compose up --build
-```
-Acesse em `http://localhost:8000`.
-
----
 
 ## ⚙️ Funcionalidades
 - Cadastro e autenticação de usuários
@@ -63,8 +50,7 @@ Acesse em `http://localhost:8000`.
 - Visualização dos resultados classificados
 - Políticas de acesso (DNSPolicy)
 - Observadores (DnsObserver)
-
----
+- Websockets
 
 ## 🔀 Rotas da Aplicação
 
@@ -80,8 +66,6 @@ Acesse em `http://localhost:8000`.
 ### Upload de CSV
 - `POST /upload` → Enviar arquivo CSV
 
----
-
 ## 🔄 Fluxo de Funcionamento
 
 1. Usuário faz upload do CSV pela interface.
@@ -90,16 +74,12 @@ Acesse em `http://localhost:8000`.
 4. Para cada domínio, o job `ClassifyDomainJob` envia para classificação IA (OpenAiClassifier ou GroqAiClassifier).
 5. O resultado (Seguro, Suspeito, Malicioso) é salvo e exibido na interface.
 
----
-
 ## 💡 Exemplo de Uso
 
 1. Faça login/cadastro.
 2. Acesse a página de upload e envie um arquivo CSV.
 3. Aguarde o processamento (fila/worker).
 4. Veja os resultados classificados na tela de logs DNS.
-
----
 
 ## 🐳 Dicas para Desenvolvimento
 
@@ -110,16 +90,12 @@ Acesse em `http://localhost:8000`.
 - Para testes, utilize arquivos CSV pequenos.
 - Utilize o comando `composer run dev` para rodar tudo em paralelo (backend, fila, frontend).
 
----
-
 ## ❓ FAQ
 
 - **Posso usar outra API de IA?** Sim, basta implementar a interface `AiClassifier` em `app/Services/Ai/`.
 - **O processamento é instantâneo?** Não, depende do worker de filas estar rodando.
 - **Como escalar?** Use múltiplos workers e configure Redis em modo cluster.
 - **Como ver erros?** Consulte o log em `storage/logs/laravel.log`.
-
----
 
 ## 📝 Licença
 Este projeto é apenas para fins de avaliação técnica.
