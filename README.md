@@ -12,7 +12,7 @@ Este projeto processa logs de consultas DNS e os classifica em níveis de risco 
 - Chave de API OpenAI ou Groq
 
 ## 🛠️ Tecnologias Utilizadas
-- Laravel 11 (Backend)
+- Laravel 12 (Backend)
 - Inertia.js + Vue 3 (Frontend)
 - TailwindCSS (Estilização)
 - Laravel Breeze (Autenticação)
